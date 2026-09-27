@@ -5,7 +5,7 @@ import path from 'node:path';
 
 const root = path.join(path.dirname(path.dirname(fileURLToPath(import.meta.url))), 'dist');
 const port = Number(process.env.PORT || 4173);
-const mime = { '.html':'text/html; charset=utf-8', '.css':'text/css; charset=utf-8', '.js':'text/javascript; charset=utf-8', '.webp':'image/webp', '.mp4':'video/mp4', '.ico':'image/x-icon' };
+const mime = { '.html':'text/html; charset=utf-8', '.css':'text/css; charset=utf-8', '.js':'text/javascript; charset=utf-8', '.mjs':'text/javascript; charset=utf-8', '.webp':'image/webp', '.mp4':'video/mp4', '.ico':'image/x-icon' };
 
 createServer(async (req, res) => {
   try {

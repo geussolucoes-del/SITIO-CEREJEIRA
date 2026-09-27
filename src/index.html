@@ -11,7 +11,7 @@
   <link rel="preload" as="image" href="/media/hero.webp" media="(min-width:900px)">
   <link rel="preload" as="image" href="/media/aerial-lake.webp" media="(max-width:899px)">
   <link rel="stylesheet" href="/styles.css">
-  <script src="/contact.js" defer></script>
+  <script src="/contact.js" type="module"></script>
   <script src="/main.js" defer></script>
 </head>
 <body>
@@ -30,7 +30,7 @@
       <p class="kicker">Propriedade rural em Minas Gerais</p>
       <h1 id="hero-title"><span>Sítio</span> Cerejeira</h1>
       <p class="hero-lead">Um lugar onde casa, água e paisagem formam uma rotina inteira.</p>
-      <a class="button button-dark" data-contact href="#">Receber informações <span aria-hidden="true">↗</span></a>
+      <a class="button button-dark" data-contact href="#qualificacao">Receber informações <span aria-hidden="true">↗</span></a>
     </div>
     <div class="hero-proof" aria-label="Destaques da propriedade">
       <span><b>01</b>Lagoa com duas nascentes</span><span><b>02</b>Pomar em produção</span><span><b>03</b>Casa sede com energia solar</span>
@@ -61,10 +61,19 @@
     <button type="button" class="gallery-item gallery-7" aria-label="Ampliar: Suíte"><img src="/media/suite.webp" alt="Suíte com marcenaria planejada e iluminação indireta" loading="lazy"><span>07 · Suíte</span></button>
     <button type="button" class="gallery-item gallery-8" aria-label="Ampliar: Banheiro da suíte"><img src="/media/bath.webp" alt="Banheiro da suíte com box e banheira de hidromassagem" loading="lazy"><span>08 · Banheiro da suíte</span></button>
   </div></section>
-  <section class="investment section-shell" aria-labelledby="investment-title"><div class="section-mark"><span>08</span><span>Investimento</span></div><div class="investment-copy"><p class="kicker">Sítio Cerejeira</p><h2 id="investment-title">R$ 1.500.000</h2><p>Para receber informações complementares e conversar sobre uma visita, fale diretamente pelo WhatsApp.</p></div><a class="button button-dark" data-contact href="#">Conversar sobre a propriedade <span aria-hidden="true">↗</span></a></section>
-  <section id="visita" class="visit" aria-labelledby="visit-title"><img src="/media/house.webp" alt="Casa sede do Sítio Cerejeira vista do jardim" loading="lazy"><div class="visit-copy"><p class="kicker light">Santo Antônio do Pontal · MG</p><h2 id="visit-title">Fotografias apresentam.<br><em>Uma visita esclarece.</em></h2><p>Granjas Reunidas São Francisco. A localização precisa e as orientações de chegada são compartilhadas durante a conversa.</p><a class="button button-light" data-contact href="#">Agendar uma conversa <span aria-hidden="true">↗</span></a></div></section>
+  <section class="investment section-shell" aria-labelledby="investment-title"><div class="section-mark"><span>08</span><span>Investimento</span></div><div class="investment-copy"><p class="kicker">Sítio Cerejeira</p><h2 id="investment-title">R$ 1.500.000</h2><p>Para receber informações complementares e conversar sobre uma visita, responda a três perguntas rápidas antes de iniciar a conversa.</p></div><a class="button button-dark" data-contact href="#qualificacao">Conversar sobre a propriedade <span aria-hidden="true">↗</span></a></section>
+  <section id="visita" class="visit" aria-labelledby="visit-title"><img src="/media/house.webp" alt="Casa sede do Sítio Cerejeira vista do jardim" loading="lazy"><div class="visit-copy"><p class="kicker light">Santo Antônio do Pontal · MG</p><h2 id="visit-title">Fotografias apresentam.<br><em>Uma visita esclarece.</em></h2><p>Granjas Reunidas São Francisco. A localização precisa e as orientações de chegada são compartilhadas durante a conversa.</p><a class="button button-light" data-contact href="#qualificacao">Agendar uma conversa <span aria-hidden="true">↗</span></a></div></section>
 </main>
 <footer><img src="/media/crest.webp" alt="Brasão do Sítio Cerejeira" width="76" height="76" loading="lazy"><div><strong>Sítio Cerejeira</strong><span>Santo Antônio do Pontal · Minas Gerais</span></div><p>Apresentação particular da propriedade.<br>Imagens reais do Sítio Cerejeira.</p><div class="privacy-link-row"><a href="/politica-de-privacidade/">Política de privacidade</a></div></footer>
 <div class="lightbox" role="dialog" aria-modal="true" aria-label="Galeria de fotos" hidden><button type="button" class="lightbox-close" aria-label="Fechar galeria">×</button><button type="button" class="lightbox-prev" aria-label="Imagem anterior">‹</button><img alt=""><button type="button" class="lightbox-next" aria-label="Próxima imagem">›</button><span></span></div>
+<dialog class="qualification" id="qualificacao" aria-labelledby="qualification-title" aria-describedby="qualification-intro">
+  <div class="qualification-shell">
+    <button type="button" class="qualification-close" aria-label="Fechar perguntas">×</button>
+    <p class="kicker">Conversa sobre o imóvel</p>
+    <h2 id="qualification-title">Antes de conversar</h2>
+    <p id="qualification-intro">Três perguntas ajudam a entender se o Sítio Cerejeira combina com seus planos.</p>
+    <div id="qualification-content"></div>
+  </div>
+</dialog>
 </body>
 </html>

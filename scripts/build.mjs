@@ -12,6 +12,6 @@ await mkdir(dist, { recursive: true });
 await cp(src, dist, { recursive: true });
 await cp(publicDir, dist, { recursive: true });
 
-const required = ['index.html', 'main.js', 'contact.js', 'styles.css', 'politica-de-privacidade/index.html', 'media/crest.webp', 'media/drone.mp4', 'media/lake-night.mp4'];
+const required = ['index.html', 'main.js', 'contact.js', 'qualification-rules.mjs', 'styles.css', 'politica-de-privacidade/index.html', 'media/crest.webp', 'media/drone.mp4', 'media/lake-night.mp4'];
 for (const file of required) await stat(path.join(dist, file));
 console.log(`Build estático pronto: ${dist}`);

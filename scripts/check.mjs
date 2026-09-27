@@ -1,6 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import { questions, nextStep } from '../src/qualification-rules.mjs';
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const html = await readFile(path.join(root, 'src/index.html'), 'utf8');
@@ -12,6 +13,13 @@ assert(!/mobile-sticky|Falar sobre o sítio/i.test(html + css), 'CTA fixo ainda 
 assert((html.match(/data-contact/g) || []).length === 3, 'Esperados três CTAs contextuais');
 assert((html.match(/<video muted playsinline/g) || []).length === 2, 'Vídeos sem atributos silenciosos');
 assert(contact.includes('5533987380223'), 'WhatsApp confirmado ausente');
+assert((html.match(/data-contact href="#qualificacao"/g) || []).length === 3, 'CTA comercial aponta diretamente para fora do fluxo orgânico');
+assert(questions.length === 3, 'Perguntas da Meta incompletas');
+assert(nextStep(0, 0) === 1 && nextStep(0, 1) === 'closed' && nextStep(0, 2) === 'closed', 'Desvios do valor incorretos');
+assert(nextStep(1, 0) === 2 && nextStep(1, 1) === 2 && nextStep(1, 2) === 'closed', 'Desvios da etapa incorretos');
+assert([0, 1, 2].every((answer) => nextStep(2, answer) === 'approved') && nextStep(2, 3) === 'closed', 'Desvios da decisão incorretos');
+assert(contact.includes('get("origem") === "formulario_meta"'), 'Origem da Meta não identificada exatamente');
+assert(!/Lead\s*\(/.test(contact + html), 'Evento Lead inesperado');
 assert(html.includes('/politica-de-privacidade/'), 'Link da política ausente');
 assert(privacy.includes('Janaína Alves') && privacy.includes('data-privacy-contact'), 'Contato da política ausente');
 console.log('Verificações de estrutura concluídas.');

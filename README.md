@@ -14,13 +14,15 @@ A prévia fica em `http://localhost:4173/`. O build estático fica em `dist/`. `
 
 ## O que foi revisado
 
-- Os três contatos levam ao WhatsApp confirmado pelo usuário, com a mesma mensagem sobre a propriedade.
+- Na URL normal, os três CTAs comerciais abrem três perguntas com os mesmos desvios do rascunho da Meta. Somente o percurso aprovado mostra o WhatsApp, com mensagem baseada nas respostas. O encerramento dos demais não inclui CTA comercial.
+- Quando o parâmetro `origem=formulario_meta` chega à página, os CTAs usam diretamente o WhatsApp confirmado pelo usuário com a mensagem da campanha. O parâmetro só indica o percurso; o site não recebe as respostas da Meta e não registra outro evento Lead.
 - O botão fixo de contato foi removido. Os vídeos têm reprodução silenciosa e os arquivos MP4 publicados não possuem faixa de áudio.
 - A galeria permite abrir fotos, avançar, voltar e fechar por teclado. O layout foi conferido em desktop e celular.
 - As fotos públicas foram comparadas às originais. Os arquivos editados do ZIP são peças de redes sociais; nenhuma substituição mostrou ganho claro para a página. A seleção publicada foi preservada.
 
 ## Pendências para publicação
 
-- Validar os campos concretos do formulário instantâneo da Meta e atualizar a Política de Privacidade. A rota está em `src/politica-de-privacidade/index.html`, marcada como rascunho e `noindex` até a revisão final.
+- Finalizar e testar, na prévia da Meta e nos navegadores internos de Instagram e Facebook, a página final E1 com o destino especial. O formulário da Meta ainda está em rascunho.
+- Revisar a Política de Privacidade após a validação dos percursos. A rota está em `src/politica-de-privacidade/index.html`, marcada como rascunho e `noindex` até a revisão final.
 - Confirmar acesso ao projeto Vercel que controla `sitio-cerejeira.vercel.app`. Criar outro projeto sem esse acesso não atualizará o endereço atual.
 - Não instalar GTM ou pixel antes de conhecer as tags e finalidades reais. O código desta reconstrução não inclui rastreamento.
