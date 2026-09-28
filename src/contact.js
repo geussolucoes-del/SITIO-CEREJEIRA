@@ -25,20 +25,29 @@ if (metaOrigin) {
   document.documentElement.dataset.contactFlow = "organic";
   const content = dialog.querySelector("#qualification-content");
   const close = dialog.querySelector(".qualification-close");
+  const presentation = dialog.querySelector("#qualification-presentation");
   let step = 0;
   let outcome = null;
   const selected = [];
 
-  function render() {
+  function render(moveFocus = false) {
     content.replaceChildren();
+    presentation.hidden = step > 0 || outcome !== null;
+    dialog.dataset.phase = outcome ? "result" : step === 0 ? "intro" : "question";
+    dialog.removeAttribute("aria-describedby");
     if (outcome) {
-      const heading = document.createElement("h3");
+      const heading = document.createElement("h2");
+      heading.id = "qualification-result-title";
+      heading.tabIndex = -1;
       const description = document.createElement("p");
+      description.id = "qualification-result-description";
       heading.textContent = outcome === "approved" ? "Vamos conversar" : "Obrigado pelo interesse";
       description.textContent = outcome === "approved"
-        ? "Suas respostas indicam que vale conversar sobre o imóvel. Você pode enviar a mensagem abaixo pelo WhatsApp."
+        ? "Continue pelo WhatsApp para receber mais informações sobre o imóvel. A mensagem será preparada com suas respostas."
         : "Pelas respostas, o Sítio Cerejeira talvez não seja a opção mais adequada para o que você procura agora. Agradecemos por conhecer a propriedade.";
       content.append(heading, description);
+      dialog.setAttribute("aria-labelledby", heading.id);
+      dialog.setAttribute("aria-describedby", description.id);
       if (outcome === "approved") {
         const message = `Olá! Vi o Sítio Cerejeira pelo site e gostaria de conversar sobre o imóvel anunciado por R$ 1.500.000. Sobre o valor: ${selected[0]}. Etapa da busca: ${selected[1]}. Participação na decisão: ${selected[2]}.`;
         const link = document.createElement("a");
@@ -56,6 +65,7 @@ if (metaOrigin) {
         button.addEventListener("click", () => dialog.close());
         content.append(button);
       }
+      if (moveFocus) { dialog.scrollTop = 0; heading.focus(); }
       return;
     }
 
@@ -64,6 +74,8 @@ if (metaOrigin) {
     progress.textContent = `Pergunta ${step + 1} de ${questions.length}`;
     const fieldset = document.createElement("fieldset");
     const legend = document.createElement("legend");
+    legend.id = "qualification-question-title";
+    legend.tabIndex = -1;
     legend.textContent = questions[step].text;
     fieldset.append(legend);
     const next = document.createElement("button");
@@ -91,9 +103,12 @@ if (metaOrigin) {
       const destination = nextStep(step, answerIndex);
       if (typeof destination === "number") step = destination;
       else outcome = destination;
-      render();
+      render(true);
     });
     content.append(progress, fieldset, next);
+    dialog.setAttribute("aria-labelledby", step === 0 ? "qualification-title" : legend.id);
+    if (step === 0) dialog.setAttribute("aria-describedby", "qualification-intro");
+    if (moveFocus) { dialog.scrollTop = 0; legend.focus(); }
   }
 
   close.addEventListener("click", () => dialog.close());
